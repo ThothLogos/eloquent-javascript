@@ -15,15 +15,27 @@ class Group {
   }
   
   has(val) { return this.members.find(m => m === val) ? true : false; }
+
+  [Symbol.iterator]() { return new GroupIterator(this); }
 }
 
-let group = Group.from([10, 20]);
-console.log(group.has(10));
-// → true
-console.log(group.has(30));
-// → false
-group.add(10);
-// → Already exists! NOOP
-group.delete(10);
-console.log(group.has(10));
-// → false
+class GroupIterator {
+  constructor(group) {
+    this.i = 0;
+    this.g = group.members;
+  }
+
+  next() {
+    if (this.i == this.g.length) return { done: true };
+    let value = { value: this.g[this.i] };
+    this.i++;
+    return { value, done: false };
+  }
+}
+
+for (let value of Group.from(["a", "b", "c"])) {
+  console.log(value);
+}
+// → a
+// → b
+// → c
