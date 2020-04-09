@@ -10,10 +10,11 @@ const box = {
 };
 
 function withBoxUnlocked(body) {
+  let startlocked = box.locked;
   box.unlock();
   try {
     body();
-  } finally { box.lock(); }
+  } finally { if (startlocked) box.lock(); }
 }
 
 withBoxUnlocked(function() { box.content.push("gold piece"); });
