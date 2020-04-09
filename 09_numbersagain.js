@@ -2,7 +2,7 @@
 let number = /^[+-]?(\d+\.?\d*|\d*\.?\d+)(e[+-]?\d+)?$/i;
 
 // Tests:
-for (let str of ["1", "-1", "+15", "1.55", ".5", "5.",  ""
+for (let str of ["1", "-1", "+15", "1.55", ".5", "5.", "22.501",
                  "1.3e2", "1E-4", "1e+12"]) {
   if (!number.test(str)) {
     console.log(`Failed to match '${str}'`);
