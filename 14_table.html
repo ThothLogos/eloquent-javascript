@@ -1,0 +1,40 @@
+<h1>Mountains</h1>
+
+<div id="mountains"></div>
+
+<script>
+  const MOUNTAINS = [
+    {name: "Kilimanjaro", height: 5895, place: "Tanzania"},
+    {name: "Everest", height: 8848, place: "Nepal"},
+    {name: "Mount Fuji", height: 3776, place: "Japan"},
+    {name: "Vaalserberg", height: 323, place: "Netherlands"},
+    {name: "Denali", height: 6168, place: "United States"},
+    {name: "Popocatepetl", height: 5465, place: "Mexico"},
+    {name: "Mont Blanc", height: 4808, place: "Italy/France"}
+  ];
+
+  let table = document.createElement("table");
+  table.setAttribute("id", "mtn_table");
+  document.getElementById("mountains").appendChild(table);
+
+  let trhead = document.createElement("tr");
+  for (let k in MOUNTAINS[0]) {
+    let thkey = document.createElement("th")
+    thkey.appendChild(document.createTextNode(k));
+    trhead.appendChild(thkey);
+  }
+  
+  document.getElementById("mtn_table").appendChild(trhead);
+
+  MOUNTAINS.forEach( mt => { 
+    let trnode = document.createElement("tr");
+    for (let k in mt) {
+      let tdnode = document.createElement('td');
+      tdnode.appendChild(document.createTextNode(mt[k]));
+      if (!isNaN(mt[k])) tdnode.style.textAlign = 'right';
+      trnode.appendChild(tdnode);
+    }
+    document.getElementById("mtn_table").appendChild(trnode);
+  });
+  
+</script>
